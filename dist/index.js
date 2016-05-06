@@ -1,5 +1,8 @@
 'use strict';
 
+//fix path with space
+var fixspc = '°°';
+
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
 var fs = require('fs');
@@ -170,6 +173,11 @@ var ls = {
       }
     }
 
+    //fix path with space
+    for (var i = 0; i < files.length; ++i) {
+      files[i] = files[i].replace(' ', fixspc);
+    }
+
     return {
       path: path,
       results: files
@@ -185,6 +193,8 @@ function Exp(options) {
   this.options = options;
 
   this.data = function (string) {
+    //fix path with space
+    string = string.replace(fixspc, ' ');
     var parts = String(string || '').split('/');
     parts.pop();
     var prefix = parts.join('/');
@@ -201,7 +211,7 @@ function Exp(options) {
       // System bell.
       console.log('\u0007');
       return [];
-    }
+    }debugger;
     return res;
   };
   this.exec = ls.exec;
