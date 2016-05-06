@@ -211,7 +211,7 @@ function Exp(options) {
       // System bell.
       console.log('\u0007');
       return [];
-    }debugger;
+    }
     return res;
   };
   this.exec = ls.exec;
